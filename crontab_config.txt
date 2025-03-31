@@ -1,0 +1,2 @@
+# Run auto-push script every hour
+0 * * * * /Users/jo/Desktop/Work/JL\ Capital/AI/auto-push.sh >> /Users/jo/Desktop/Work/JL\ Capital/AI/git-push.log 2>&1 
