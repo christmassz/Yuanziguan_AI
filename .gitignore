@@ -1,0 +1,17 @@
+.DS_Store
+*.log
+node_modules/
+__pycache__/
+*.pyc
+.env
+.venv/
+venv/
+ENV/
+env/
+*/venv/
+.idea/
+.vscode/
+*.swp
+*~
+*.so
+*.dylib 
