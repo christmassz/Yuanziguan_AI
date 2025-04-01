@@ -1,0 +1,21 @@
+{
+  "name": "ai",
+  "version": "1.0.0",
+  "description": "This repository contains AI-related code and tools for the Yuanziguan project. It includes data analysis, visualization, and processing tools for various cryptocurrency datasets.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/christmassz/Yuanziguan_AI.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/christmassz/Yuanziguan_AI/issues"
+  },
+  "homepage": "https://github.com/christmassz/Yuanziguan_AI#readme"
+}
