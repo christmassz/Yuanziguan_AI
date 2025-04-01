@@ -1,4 +1,4 @@
-// mvrv.js - Updated version
+//.js - Updated version
 const fs = require('fs');
 const path = require('path');
 const { spawn } = require('child_process');
@@ -8,9 +8,9 @@ const exec = promisify(require('child_process').exec);
 // Configuration
 const config = {
   dataDir: __dirname,
-  mainCsvFile: path.join(__dirname, 'mvrv-ratio-data.csv'),
-  mainJsonFile: path.join(__dirname, 'mvrv-ratio-data.json'),
-  rawDataFile: path.join(__dirname, 'mvrv-data.json'),
+  mainCsvFile: path.join(__dirname, 'bubble-ratio-data.csv'),
+  mainJsonFile: path.join(__dirname, 'bubble-ratio-data.json'),
+  rawDataFile: path.join(__dirname, 'bubble-data.json'),
   logFile: path.join(__dirname, 'scraper.log'),
   maxLogSize: 1024 * 1024  // 1MB max log size
 };
@@ -121,14 +121,14 @@ function updateMainDataFile() {
     // Update the CSV file
     if (!fs.existsSync(config.mainCsvFile)) {
       // Create new CSV with headers
-      const headers = 'date,price,mvrvRatio\n';
+      const headers = 'date,price,bubbleRatio\n';
       fs.writeFileSync(config.mainCsvFile, headers);
       log('Created new CSV file with headers');
     }
     
     // Append only new entries to CSV
     const csvLines = newEntries.map(item => 
-      `${item.date},${item.price.toFixed(2)},${item.mvrvRatio.toFixed(4)}`
+      `${item.date},${item.price.toFixed(2)},${item.bubbleRatio.toFixed(4)}`
     ).join('\n');
     
     fs.appendFileSync(config.mainCsvFile, csvLines + '\n');
@@ -147,9 +147,9 @@ function cleanupFiles() {
     // Files to delete
     const filesToDelete = [
       'coinglass-page.png',  // Screenshot from auto-decrypt
-      'mvrv-ratio.json', // Temporary JSON from previous steps
-      'corrected-mvrv-ratio.json', // Intermediate JSON 
-      'corrected-mvrv-ratio.csv',  // Intermediate CSV
+      'bubble-ratio.json', // Temporary JSON from previous steps
+      'corrected-bubble-ratio.json', // Intermediate JSON 
+      'corrected-bubble-ratio.csv',  // Intermediate CSV
       // Keep the raw data file as it's our source file
     ];
     
@@ -172,7 +172,7 @@ function cleanupFiles() {
 // Main function
 async function main() {
   try {
-    log('Starting MVRV Ratio scraper');
+    log('Starting bubble Ratio scraper');
     
     // Step 1: Run auto-decrypt.js to get the encrypted data and save it
     await runScript(path.join(config.dataDir, 'auto-decrypt.js'));
@@ -181,15 +181,15 @@ async function main() {
     updateMainDataFile();
     
     // Step 3: Run the CSV conversion script
-    await runScript(path.join(config.dataDir, 'convert_mvrv_to_csv.js'));
-    log('Converted MVRV data to readable CSV format');
+    await runScript(path.join(config.dataDir, 'convert_bubble_to_csv.js'));
+    log('Converted bubble data to readable CSV format');
     
     // Step 4: Clean up temporary files
     cleanupFiles();
     
-    log('MVRV Ratio scraper completed successfully');
+    log('bubble Ratio scraper completed successfully');
   } catch (error) {
-    log(`Error in MVRV Ratio scraper: ${error.message}`);
+    log(`Error in bubble Ratio scraper: ${error.message}`);
   } 
 }
 
